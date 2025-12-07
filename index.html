@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="manifest" href="manifest.json" />
+<title>Tekstklok</title>
+<style>
+body {
+  margin: 0;
+  background: #000;
+  color: #0ff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family: Arial, sans-serif;
+  font-size: 3rem;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+<div id="clock"></div>
+<script>
+function toWords(h, m) {
+  const hours = ["twaalf","een","twee","drie","vier","vijf","zes","zeven","acht","negen","tien","elf"];
+  let hourText = hours[h % 12];
+  let minuteText = m === 0 ? "uur" : m + " minuten";
+  return hourText + " " + minuteText;
+}
+
+function update() {
+  const now = new Date();
+  document.getElementById("clock").textContent = toWords(now.getHours(), now.getMinutes());
+}
+setInterval(update, 1000);
+update();
+</script>
+</body>
+</html>
